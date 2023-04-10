@@ -43,6 +43,14 @@ app.get("/fetch-articles", (req, res) => {
   getData(res, API_URL);
 });
 
+app.get("/find-by-author", (req, res) => {
+  const query_author = req.query.author; // author to search articles
+  const query_numOfArticles = req.query.num; // number of articles to fetch
+
+  const API_URL = `https://gnews.io/api/v4/search?q=${query_author}&token=${API_KEY}&max=${query_numOfArticles}`;
+  getData(res, API_URL);
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
