@@ -51,6 +51,21 @@ app.get("/find-by-author", (req, res) => {
   getData(res, API_URL);
 });
 
+app.get("/find-by-title", (req, res) => {
+  const query_title = req.query.title; // title to search articles
+  const query_numOfArticles = req.query.num; // number of articles to fetch
+
+  const API_URL = `https://gnews.io/api/v4/search?q=${query_title}&token=${API_KEY}&max=${query_numOfArticles}`;
+  getData(res, API_URL);
+});
+
+app.get("/search-by-keyword", (req, res) => {
+  const query_keyword = req.query.keyword; // keyword to search articles
+  const query_numOfArticles = req.query.num; // number of articles to fetch
+
+  const API_URL = `https://gnews.io/api/v4/search?q=${query_keyword}&token=${API_KEY}&max=${query_numOfArticles}`;
+  getData(res, API_URL);
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
